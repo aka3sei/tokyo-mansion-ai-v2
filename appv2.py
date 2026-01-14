@@ -10,7 +10,7 @@ def load_assets():
     town_mapping = joblib.load('town_mapping.joblib')
     combined_data = b""
     
-    # ユーザー様の環境に合わせて 4分割（range(4)）で読み込みます
+    #  4分割（range(4)）で読み込みます
     for i in range(4):
         file_name = f"tokyo_price_v1_part{i}.pkl"
         if os.path.exists(file_name):
@@ -31,7 +31,7 @@ st.set_page_config(page_title="23区マンションAI査定", layout="centered")
 st.title("🏙️ 23区マンションAI価格査定")
 
 # --- 1. 物件スペック設定（サイドバー） ---
-st.sidebar.header("📏 物件スペック")
+st.sidebar.header("📏 予測条件の設定")
 size = st.sidebar.slider("専有面積 (㎡)", 10.0, 200.0, 60.0, 0.5)
 built_year = st.sidebar.number_input("築年 (西暦)", 1970, 2025, 2010)
 walk_min = st.sidebar.slider("駅徒歩 (分)", 1, 30, 5)
@@ -90,3 +90,4 @@ if model is not None:
     st.caption("※2026年時点の統計推計値です。")
 else:
     st.warning("モデルの読み込みに失敗しました。GitHub上のファイル名（tokyo_price_v1_part0.pkl等）を確認してください。")
+
